@@ -5,8 +5,14 @@ func main() {
 
 
 	cards := newDeck()
+	
+	hand, remainingDeck := deal(cards, 5) //  2 new variable in order to get multi value returnm function
 
-	cards.print()
+	hand.print()
+	remainingDeck.print()
+
+
+	//cards.print()
 
 }
 

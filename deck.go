@@ -4,10 +4,16 @@ import "fmt"
 // which is a slicew of strings
 type deck []string
 
-func (d deck) print(){
+func (d deck) print(){ // receiver d deck
 	for i, card := range d{
 		fmt.Println(i,card)
 	}
+}
+
+func  deal(d deck, handSize int) (deck,deck) { // return multipple value : deck & deck
+
+	return d[:handSize], d[handSize:]
+
 }
 
 func newDeck() deck {   // return value deck
