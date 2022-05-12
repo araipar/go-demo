@@ -2,6 +2,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"io/ioutil"
 )
 //Create a new type of deck
 // which is a slicew of strings
@@ -23,6 +24,11 @@ func (d deck) toString() string { // receiver d deck
 
 	return strings.Join([]string(d),",")
 	
+}
+
+func (d deck) saveToFile(filename string) error{  //receiver deck , parameter string , returns error
+
+return	ioutil.WriteFile(filename,[]byte(d.toString()), 0666)
 
 }
 
