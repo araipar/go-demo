@@ -2,6 +2,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"os"
 	"io/ioutil"
 )
 //Create a new type of deck
@@ -45,4 +46,19 @@ func newDeck() deck {   // return value deck
 
 	return cards
 
+}
+
+func newDeckFromFile(filename string) deck{
+	bs, err := ioutil.ReadFile(filename) // err = value of error. but if everything is ok, err will be nil
+	if err != nil{ // if something goes wrong
+		// opt 1 : log the error , return a call to new deck 
+		// opt 2 : log the error , quit program
+
+		fmt.Println("Error : ", err)
+		os.Exit(1)
+	}
+
+	 s := strings.Split(string(bs),",")
+	 return deck(s)
+	
 }
