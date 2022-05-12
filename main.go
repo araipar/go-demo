@@ -6,17 +6,10 @@ import "fmt"
 func main() {
 
 
-	// cards := newDeck()
+	cards := newDeck()
 	
-	// hand, remainingDeck := deal(cards, 5) //  2 new variable in order to get multi value returnm function
+	fmt.Println(cards.toString())
 
-	// hand.print()
-	// remainingDeck.print()
-
-	greeting := "Hi Araipur"
-	fmt.Println([]byte(greeting))
-
-	//cards.print()
 
 }
 
