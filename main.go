@@ -10,11 +10,12 @@ type person struct{
 
 func main() {
 
-//1.	p := person{"Rai","Paramartha"} // define first string = first attribute , second = second etc
-p := person{firstName:"Rai",lastName:"Paramartha"} // 2nd way
-fmt.Println(p.firstName)
-fmt.Println(p.lastName)
+var p person
+p.firstName = "Jessi"
+p.lastName = "Paramartha"
 fmt.Println(p)
+fmt.Printf("%+v",p) //  print every attribute value
+
 }
 
 
