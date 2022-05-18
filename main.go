@@ -13,13 +13,7 @@ type person struct{
 	contactInfo
 }
 
-func (p person) print(){
-	fmt.Printf("%+v",p)
-}
 
-func (p person) updateName(newFirstName string){
-	p.firstName = newFirstName
-}
 
 func main() {
 
@@ -31,10 +25,25 @@ jim := person{
 		zipCode:17115,
 	},
 }
+// go is a pass by value language
+jimPointer := &jim  //  & operator = give me the memory address of the value this variable is pointing at
 
-jim.updateName("Rai")
+jimPointer.updateName("Rai")
+
 jim.print()
 
 }
+func (p person) print(){
+	fmt.Printf("%+v",p)
+}
 
+func (pointerToPerson *person) updateName(newFirstName string){ // * operator = give me the value this memory address is pointing at
+	(*pointerToPerson).firstName = newFirstName
+}
+
+//  0001       person{firstname:"Jim"...}
+// address^           value^
+
+// turn address into value with *address
+// turn value into address with   &value
 
