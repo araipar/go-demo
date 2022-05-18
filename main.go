@@ -27,7 +27,7 @@ jim := person{
 }
 // go is a pass by value language
 
-jim.updateName("Rai")
+jim.updateName("Rain")
 
 jim.print()
 
@@ -45,4 +45,8 @@ func (pointerToPerson *person) updateName(newFirstName string){
 
 // turn address into value with *address
 // turn value into address with   &value
+
+
+// use pointers to change Value Types like : int,float , string ,bool,structs
+// dont worry about pointers with Reference Types like : Slices, maps, channels , pointers , functions
 
