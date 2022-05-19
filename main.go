@@ -1,39 +1,41 @@
 package main
-import ("fmt"
-		"net/http"
-		"os"
-		"io"
-	)
-type logWriter struct{}
+
+import "fmt"
+
+type shape interface {
+    printArea() float64
+}
+
+type square struct {
+    sideLength float64
+}
+type triangle struct {
+    height float64
+    base   float64
+}
+
+func (t triangle) printArea() float64 {
+
+    return t.height * t.base
+}
+
+func (s square) printArea() float64 {
+    return s.sideLength * s.sideLength
+}
+
+func getArea(s shape) float64 {
+    return s.printArea()
+}
+
+// func getArea(t triangle) float64 {
+//  return 0.5 * t.base * t.height
+// }
 
 func main() {
 
-	resp, err := http.Get("http://google.com")
+    tri := triangle{height: 3.1, base: 2.1}
+    squ := square{sideLength: 2}
 
-	if err != nil {
-		fmt.Println("Error:",err)
-		os.Exit(1)
-	}
-
-	// bs := make([]byte,99999)
-	// resp.Body.Read(bs)
-	// fmt.Println(string(bs))
-
-	//3 line up there can be replaced by 1 line down here
-
-	lw := logWriter{}
-	io.Copy(lw, resp.Body)
-
+    fmt.Println("triangle area:", getArea(tri))
+    fmt.Println("square area:", getArea(squ))
 }
-
-func (logWriter) Write(bs []byte) (int, error){
-	fmt.Println(string(bs))
-	fmt.Println("Just Wrote this many bytes : " , len(bs))
-	return len(bs),nil
-}
-
-
-
-
-
-
