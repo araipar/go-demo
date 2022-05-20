@@ -14,20 +14,24 @@ func main() {
         "http://amazon.com",        
     }
 
+    c := make(chan string) // channel declaration
+
     for _, link := range links{
 
-     go checkLink(link) //initiaate new go routine 
+     go checkLink(link,c) //initiaate new go routine 
 
     }
-
+    fmt.Println(<- c)
 
 }
 
-func checkLink(link string){
+func checkLink(link string,  c chan string){
    _,err := http.Get(link) // BLOCKING CALL
    if err  != nil {
        fmt.Println(link,"might be down!")
+       c <- "Might be down"
        return
    }
    fmt.Println(link,"is Ok!")
+   c <- "is Ok!"
 }
