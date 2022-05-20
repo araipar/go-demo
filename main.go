@@ -16,7 +16,7 @@ func main() {
 
     for _, link := range links{
 
-        checkLink(link)
+     go checkLink(link) //initiaate new go routine 
 
     }
 
@@ -24,7 +24,7 @@ func main() {
 }
 
 func checkLink(link string){
-   _,err := http.Get(link)
+   _,err := http.Get(link) // BLOCKING CALL
    if err  != nil {
        fmt.Println(link,"might be down!")
        return
