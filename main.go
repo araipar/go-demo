@@ -1,7 +1,8 @@
 package main
 
 import ("fmt"
-        "net/http"        
+        "net/http"
+        "time"        
 )
 
 func main() {
@@ -18,24 +19,26 @@ func main() {
 
     for _, link := range links{
 
-     go checkLink(link,c) //initiaate new go routine 
+     go checkLink(link, c) //initiaate new go routine 
 
     }
-    fmt.Println(<- c)
-    fmt.Println(<- c)
-    fmt.Println(<- c)
-    fmt.Println(<- c)
-    fmt.Println(<- c)
-    fmt.Println(<- c)
+   
+    for  l := range c{
+       go func(link string){
+        time.Sleep(5 * time.Second)
+        checkLink(link,c)
+       }(l)
+    }
+
 }
 
 func checkLink(link string,  c chan string){
    _,err := http.Get(link) // BLOCKING CALL
    if err  != nil {
-       fmt.Println(link,"might be down!")
-       c <- "Might be down"
+      fmt.Println(link,"might be down!")
+       c <- link
        return
    }
    fmt.Println(link,"is Ok!")
-   c <- "is Ok!"
+   c <- link
 }
