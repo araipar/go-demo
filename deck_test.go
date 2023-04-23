@@ -8,6 +8,8 @@ import (
 
 // func test new deck : code to make sure that a deck is made with x number of CARDS, if it doesnt, log it
 
+//test
+
 func TestNewDeck(t *testing.T) {
 	d := newDeck()
 	if len(d) != 52 {
